@@ -17,7 +17,8 @@
         "name": "Timer",
         "version": "https://github.com/Emergency1999/Timer.git#1.1"
     }, {
-        "name": "adafruit/Adafruit NeoPixel",
+        "owner": "adafruit",
+        "name": "Adafruit NeoPixel",
         "version": "^1.7.0"
     }],
     "license": "MIT",

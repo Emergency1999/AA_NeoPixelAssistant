@@ -1,0 +1,26 @@
+{
+    "name": "AA_NeoPixelAssistant",
+    "version": "1.0.0",
+    "description": "NeoPixelAssistant",
+    "keywords": "assistance, NeoPixelAssistant",
+    "authors": {
+        "name": "Johannes Schmid"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Emergency1999/AA_NeoPixelAssistant.git"
+    },
+    "dependencies": [{
+        "name": "AA_ArduinoAssistance",
+        "version": "https://github.com/Emergency1999/AA_ArduinoAssistance.git#1.0"
+    }, {
+        "name": "Timer",
+        "version": "https://github.com/Emergency1999/Timer.git#1.1"
+    }, {
+        "name": "adafruit/Adafruit NeoPixel",
+        "version": "^1.7.0"
+    }],
+    "license": "MIT",
+    "frameworks": "Arduino",
+    "platforms": "*"
+}

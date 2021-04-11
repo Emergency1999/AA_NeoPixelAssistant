@@ -11,7 +11,7 @@ class NeoPixelEffect : public Assistant {
    public:
     NeoPixelEffect(NeoPixelAssistant& assistant);
     NeoPixelEffect(NeoPixelAssistant& assistant, unsigned long time);
-    void update();
+    virtual void update();
 
    protected:
     // void _setup() override;
@@ -23,7 +23,7 @@ class NeoPixelEffect : public Assistant {
 class NeoPixelEffectFlush : public NeoPixelEffect {
    public:
     NeoPixelEffectFlush(NeoPixelAssistant& assistant, unsigned long time, float start, float end, RGBW color);
-    void update();
+    void update() override;
 
    private:
     void _setup() override;

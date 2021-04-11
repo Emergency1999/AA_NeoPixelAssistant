@@ -61,7 +61,7 @@ void NeoPixelAssistant::set(RGBW color, uint16_t n) {
     changed = true;
 }
 void NeoPixelAssistant::set(RGBW color, uint16_t n1, uint16_t n2) {
-    for (int i = n1; i < n2; i++) {
+    for (uint16_t i = n1; i < n2; i++) {
         set(color, i);
     }
 }
@@ -74,7 +74,7 @@ void NeoPixelAssistant::setHue(uint16_t hue, uint16_t n) {
     changed = true;
 }
 void NeoPixelAssistant::setHue(uint16_t hue, uint16_t n1, uint16_t n2) {
-    for (int i = n1; i < n2; i++) {
+    for (uint16_t i = n1; i < n2; i++) {
         setHue(hue, i);
     }
 }

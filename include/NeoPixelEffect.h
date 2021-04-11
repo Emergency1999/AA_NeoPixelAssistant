@@ -11,7 +11,7 @@ class NeoPixelEffect : public Assistant {
    public:
     NeoPixelEffect(NeoPixelAssistant& assistant);
     NeoPixelEffect(NeoPixelAssistant& assistant, unsigned long time);
-    virtual void update();
+    virtual void update() = 0;
 
    protected:
     // void _setup() override;

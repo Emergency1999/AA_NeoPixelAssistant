@@ -6,29 +6,38 @@
 #include <Assistant.h>
 #include <Timer.h>
 
-typedef struct RGB_t {
+typedef struct RGB {
     byte R;
     byte G;
     byte B;
-} RGB;
-typedef struct RGBW_t {
+    bool operator==(RGB other) {
+        return R == other.R && G == other.G && B == other.B;
+    }
+    bool operator!=(RGB other) { return !(operator==(other)); }
+};
+
+typedef struct RGBW {
     byte R;
     byte G;
     byte B;
     byte W;
-    RGBW_t(RGB &other) {
+    RGBW(RGB &other) {
         R = other.R;
         G = other.G;
         B = other.B;
         W = 0;
     };
-    RGBW_t(byte R, byte G, byte B, byte W) {
+    RGBW(byte R, byte G, byte B, byte W) {
         this->R = R;
         this->G = G;
         this->B = B;
         this->W = W;
     };
-} RGBW;
+    bool operator==(RGBW other) {
+        return R == other.R && G == other.G && B == other.B && W == other.W;
+    }
+    bool operator!=(RGBW other) { return !(operator==(other)); }
+};
 
 class NeoPixelAssistant : public Assistant {
    public:

@@ -1,6 +1,6 @@
 {
     "name": "AA_NeoPixelAssistant",
-    "version": "1.0.3",
+    "version": "1.1.0",
     "description": "NeoPixelAssistant",
     "keywords": "assistance, NeoPixelAssistant",
     "authors": {
@@ -12,10 +12,10 @@
     },
     "dependencies": [{
         "name": "AA_ArduinoAssistance",
-        "version": "https://github.com/Emergency1999/AA_ArduinoAssistance.git#1.0"
+        "version": "https://github.com/Emergency1999/AA_ArduinoAssistance.git"
     }, {
         "name": "Timer",
-        "version": "https://github.com/Emergency1999/Timer.git#1.1"
+        "version": "https://github.com/Emergency1999/Timer.git"
     }, {
         "owner": "adafruit",
         "name": "Adafruit NeoPixel",

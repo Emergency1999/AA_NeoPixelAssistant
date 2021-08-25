@@ -134,6 +134,8 @@ void MultiPixelAssistant::set(RGBW color, uint16_t n) {
 }
 
 // -------------------------------------------------------------------------------- NeoPixelAssistant
+NeoPixelAssistant::NeoPixelAssistant(Adafruit_NeoPixel* strip)
+    : NeoPixelAssistant(strip, 0) {}
 NeoPixelAssistant::NeoPixelAssistant(Adafruit_NeoPixel* strip, unsigned long minUpdateInterval)
     : _strip(strip), T(minUpdateInterval) {
     if (minUpdateInterval == 0) T.stop();

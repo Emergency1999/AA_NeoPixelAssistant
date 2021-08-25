@@ -72,6 +72,7 @@ class MultiPixelAssistant : public PixelAssistant {
 
 class NeoPixelAssistant : public PixelAssistant {
    public:
+    NeoPixelAssistant(Adafruit_NeoPixel *strip);
     NeoPixelAssistant(Adafruit_NeoPixel *strip, unsigned long minUpdateInterval);
     void update();
 

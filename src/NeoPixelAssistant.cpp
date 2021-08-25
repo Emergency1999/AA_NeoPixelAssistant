@@ -134,8 +134,9 @@ void MultiPixelAssistant::set(RGBW color, uint16_t n) {
 }
 
 // -------------------------------------------------------------------------------- NeoPixelAssistant
-NeoPixelAssistant::NeoPixelAssistant(Adafruit_NeoPixel* strip) {
-    _strip = strip;
+NeoPixelAssistant::NeoPixelAssistant(Adafruit_NeoPixel* strip, unsigned long minUpdateInterval)
+    : _strip(strip), T(minUpdateInterval) {
+    if (minUpdateInterval == 0) T.stop();
 }
 
 void NeoPixelAssistant::_setup() {
@@ -145,13 +146,14 @@ void NeoPixelAssistant::_setup() {
 }
 
 void NeoPixelAssistant::_loop() {
-    if (changed) update();
+    if (changed || T.tick()) update();
 }
 
 void NeoPixelAssistant::update() {
     if (_strip->canShow()) {
         _strip->show();
         changed = false;
+        T.reset();
     }
 }
 

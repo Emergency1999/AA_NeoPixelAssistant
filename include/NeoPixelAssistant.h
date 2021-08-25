@@ -72,7 +72,7 @@ class MultiPixelAssistant : public PixelAssistant {
 
 class NeoPixelAssistant : public PixelAssistant {
    public:
-    NeoPixelAssistant(Adafruit_NeoPixel *strip);
+    NeoPixelAssistant(Adafruit_NeoPixel *strip, unsigned long minUpdateInterval);
     void update();
 
     RGBW get(uint16_t n);
@@ -87,6 +87,7 @@ class NeoPixelAssistant : public PixelAssistant {
     void _setup() override;
     void _loop() override;
     Adafruit_NeoPixel *_strip;
+    Timer T;
     bool changed = false;
 };
 

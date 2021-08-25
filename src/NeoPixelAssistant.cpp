@@ -59,8 +59,9 @@ void PixelAssistant::setPercent(RGBW color, float p1, float p2) {
 }
 
 // -------------------------------------------------------------------------------- PartPixelAssistant
-PartPixelAssistant::PartPixelAssistant(PixelAssistant* strip) {
-    _strip = strip;
+PartPixelAssistant::PartPixelAssistant(PixelAssistant* strip, uint16_t n1, uint16_t n2)
+    : _strip(strip), _backwards(n1 > n2), _first(n1), _count(_backwards ? n1 - n2 : n2 - n1) {
+    ASSERT_ERR(n1 != n2, "need to have more pixels than 0");
 }
 
 void PartPixelAssistant::_setup() {}
@@ -72,13 +73,64 @@ uint16_t PartPixelAssistant::count() {
 }
 
 RGBW PartPixelAssistant::get(uint16_t n) {
-    ASSERT_WARN(n < count(), "n<count()", n = 0);
-    return _strip->get(n);
+    ASSERT_ERR(n < count(), "n<count()");
+    return _strip->get(_first + _backwards ? -n - 1 : n);
 }
 
 void PartPixelAssistant::set(RGBW color, uint16_t n) {
-    ASSERT_WARN(n < count(), "n<count()", n = 0);
-    return _strip->set(color, n);
+    ASSERT_WARN(n < count(), "n<count()", return );
+    return _strip->set(color, _first + _backwards ? -n - 1 : n);
+}
+
+// -------------------------------------------------------------------------------- MultiPixelAssistant
+MultiPixelAssistant::MultiPixelAssistant(PixelAssistant* stripA, PixelAssistant* stripB) {
+    MultiPixelAssistant(
+        new PixelAssistant* [2] { stripA, stripB }, 2);
+}
+MultiPixelAssistant::MultiPixelAssistant(PixelAssistant* stripA, PixelAssistant* stripB, PixelAssistant* stripC) {
+    MultiPixelAssistant(
+        new PixelAssistant* [3] { stripA, stripB, stripC }, 3);
+}
+MultiPixelAssistant::MultiPixelAssistant(PixelAssistant* stripA, PixelAssistant* stripB, PixelAssistant* stripC, PixelAssistant* stripD) {
+    MultiPixelAssistant(
+        new PixelAssistant* [4] { stripA, stripB, stripC, stripD }, 4);
+}
+MultiPixelAssistant::MultiPixelAssistant(PixelAssistant** strips, byte count) : _strips(strips), _stripcount(count) {}
+MultiPixelAssistant::~MultiPixelAssistant() { delete[] _strips; }
+
+void MultiPixelAssistant::_setup() {}
+
+void MultiPixelAssistant::_loop() {}
+
+uint16_t MultiPixelAssistant::count() {
+    uint16_t s = 0;
+    for (byte i = 0; i < _stripcount; i++)
+        s += _strips[i]->count();
+    return s;
+}
+
+RGBW MultiPixelAssistant::get(uint16_t n) {
+    for (byte i = 0; i < _stripcount; i++) {
+        uint16_t c = _strips[i]->count();
+        if (n < c)
+            return _strips[i]->get(n);
+        else
+            n -= c;
+    }
+    ASSERT_ERR(false, "n<count()");
+    return {0, 0, 0, 0};
+}
+
+void MultiPixelAssistant::set(RGBW color, uint16_t n) {
+    for (byte i = 0; i < _stripcount; i++) {
+        uint16_t c = _strips[i]->count();
+        if (n < c) {
+            _strips[i]->set(color, n);
+            return;
+        } else
+            n -= c;
+    }
+    ASSERT_WARN(false, "n<count()", return );
 }
 
 // -------------------------------------------------------------------------------- NeoPixelAssistant

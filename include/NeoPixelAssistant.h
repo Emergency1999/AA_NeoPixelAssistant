@@ -41,6 +41,7 @@ class PartPixelAssistant : public PixelAssistant {
     PartPixelAssistant(PixelAssistant *strip, uint16_t n1, uint16_t n2);
 
     RGBW get(uint16_t n) override;
+    using PixelAssistant::set;
     void set(RGBW color, uint16_t n) override;
     uint16_t count() override;
 
@@ -59,7 +60,9 @@ class MultiPixelAssistant : public PixelAssistant {
     MultiPixelAssistant(PixelAssistant *stripA, PixelAssistant *stripB, PixelAssistant *stripC, PixelAssistant *stripD);
     MultiPixelAssistant(PixelAssistant **strips, byte count);
     ~MultiPixelAssistant();
+
     RGBW get(uint16_t n) override;
+    using PixelAssistant::set;
     void set(RGBW color, uint16_t n) override;
     uint16_t count() override;
 
@@ -76,8 +79,9 @@ class NeoPixelAssistant : public PixelAssistant {
     NeoPixelAssistant(Adafruit_NeoPixel *strip, unsigned long minUpdateInterval);
     void update();
 
-    RGBW get(uint16_t n);
-    void set(RGBW color, uint16_t n);
+    RGBW get(uint16_t n) override;
+    using PixelAssistant::set;
+    void set(RGBW color, uint16_t n) override;
     uint16_t count();
 
     // void setHue(uint16_t hue);

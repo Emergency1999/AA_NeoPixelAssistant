@@ -1,14 +1,14 @@
 {
-    "name": "AA_NeoPixelAssistant",
-    "version": "1.3.2",
-    "description": "NeoPixelAssistant",
-    "keywords": "assistance, NeoPixelAssistant",
+    "name": "AA_PixelAssistant",
+    "version": "2.0.0",
+    "description": "PixelAssistant",
+    "keywords": "assistance, PixelAssistant, Adafruit NeoPixel",
     "authors": {
         "name": "Johannes Schmid"
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/Emergency1999/AA_NeoPixelAssistant.git"
+        "url": "https://github.com/Emergency1999/AA_PixelAssistant.git"
     },
     "dependencies": [{
         "name": "AA_ArduinoAssistance",

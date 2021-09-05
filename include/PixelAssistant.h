@@ -1,5 +1,5 @@
-#ifndef AA_NeoPixelAssistant
-#define AA_NeoPixelAssistant
+#ifndef AA_PixelAssistant
+#define AA_PixelAssistant
 
 #include <Adafruit_NeoPixel.h>
 #include <Arduino.h>

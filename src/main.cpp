@@ -1,11 +1,11 @@
 #include <Adafruit_NeoPixel.h>
 #include <Arduino.h>
-#include <NeoPixelAssistant.h>
-#include <NeoPixelEffect.h>
+#include <PixelAssistant.h>
+#include <PixelEffect.h>
 
 NeoPixelAssistant AB(new Adafruit_NeoPixel(20, 18, NEO_GRBW + NEO_KHZ800));
-NeoPixelAssistant BB(new Adafruit_NeoPixel(20, 18, NEO_GRBW + NEO_KHZ800));
-NeoPixelAssistant CA(new Adafruit_NeoPixel(20, 18, NEO_GRBW + NEO_KHZ800));
+NeoPixelAssistant BB(new Adafruit_NeoPixel(20, 19, NEO_GRBW + NEO_KHZ800));
+NeoPixelAssistant CA(new Adafruit_NeoPixel(20, 20, NEO_GRBW + NEO_KHZ800));
 
 PartPixelAssistant PA_(&AB, 0, 10);
 PartPixelAssistant P_A(&CA, 10, 20);

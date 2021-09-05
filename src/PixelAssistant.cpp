@@ -1,4 +1,4 @@
-#include <NeoPixelAssistant.h>
+#include <PixelAssistant.h>
 
 // -------------------------------------------------------------------------------- RGB
 bool RGB::operator==(RGB other) {

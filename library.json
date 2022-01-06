@@ -1,6 +1,6 @@
 {
     "name": "AA_PixelAssistant",
-    "version": "2.0.0",
+    "version": "2.0.1",
     "description": "PixelAssistant",
     "keywords": "assistance, PixelAssistant, Adafruit NeoPixel",
     "authors": {
@@ -8,14 +8,17 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/Emergency1999/AA_PixelAssistant.git"
+        "url": "https://github.com/SchmidHome/AA_PixelAssistant.git"
     },
     "dependencies": [{
         "name": "AA_ArduinoAssistance",
-        "version": "https://github.com/Emergency1999/AA_ArduinoAssistance.git"
+        "version": "https://github.com/SchmidHome/AA_ArduinoAssistance.git"
     }, {
+        "name": "Logger",
+        "version": "https://github.com/SchmidHome/Logger.git"
+    },{
         "name": "Timer",
-        "version": "https://github.com/Emergency1999/Timer.git"
+        "version": "https://github.com/SchmidHome/Timer.git"
     }, {
         "owner": "adafruit",
         "name": "Adafruit NeoPixel",

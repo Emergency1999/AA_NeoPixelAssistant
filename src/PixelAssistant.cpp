@@ -61,7 +61,9 @@ void PixelAssistant::setPercent(RGBW color, float p1, float p2) {
 // -------------------------------------------------------------------------------- PartPixelAssistant
 PartPixelAssistant::PartPixelAssistant(PixelAssistant* strip, uint16_t n1, uint16_t n2)
     : _strip(strip), _backwards(n1 > n2), _first(n1), _count(_backwards ? n1 - n2 : n2 - n1) {
+    #ifdef USE_LOGGER
     ASSERT_ERR(n1 != n2, "need to have more pixels than 0");
+    #endif
 }
 
 void PartPixelAssistant::_setup() {}
@@ -73,12 +75,16 @@ uint16_t PartPixelAssistant::count() {
 }
 
 RGBW PartPixelAssistant::get(uint16_t n) {
+    #ifdef USE_LOGGER
     ASSERT_ERR(n < count(), "n<count()");
+    #endif
     return _strip->get(_first + _backwards ? -n - 1 : n);
 }
 
 void PartPixelAssistant::set(RGBW color, uint16_t n) {
+    #ifdef USE_LOGGER
     ASSERT_WARN(n < count(), "n<count()", return );
+    #endif
     return _strip->set(color, _first + _backwards ? -n - 1 : n);
 }
 
@@ -117,7 +123,9 @@ RGBW MultiPixelAssistant::get(uint16_t n) {
         else
             n -= c;
     }
+    #ifdef USE_LOGGER
     ASSERT_ERR(false, "n<count()");
+    #endif
     return {0, 0, 0, 0};
 }
 
@@ -130,7 +138,9 @@ void MultiPixelAssistant::set(RGBW color, uint16_t n) {
         } else
             n -= c;
     }
+    #ifdef USE_LOGGER
     ASSERT_WARN(false, "n<count()", return );
+    #endif
 }
 
 // -------------------------------------------------------------------------------- NeoPixelAssistant
@@ -164,7 +174,9 @@ uint16_t NeoPixelAssistant::count() {
 }
 
 RGBW NeoPixelAssistant::get(uint16_t n) {
+    #ifdef USE_LOGGER
     ASSERT_WARN(n < count(), "n<count()", n = 0);
+    #endif
     union {
         uint32_t value;
         struct {
@@ -179,7 +191,9 @@ RGBW NeoPixelAssistant::get(uint16_t n) {
 }
 
 void NeoPixelAssistant::set(RGBW color, uint16_t n) {
+    #ifdef USE_LOGGER
     ASSERT_WARN(n < count(), "n<count()", n = 0);
+    #endif
     _strip->setPixelColor(n, color.R, color.G, color.B, color.W);
     changed = true;
 }

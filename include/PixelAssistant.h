@@ -5,7 +5,10 @@
 #include <Arduino.h>
 #include <Assistant.h>
 #include <Timer.h>
-// #include <Vector.h>
+
+#ifdef USE_LOGGER
+#include <Logger.h>
+#endif
 
 struct RGB {
     byte R, G, B;

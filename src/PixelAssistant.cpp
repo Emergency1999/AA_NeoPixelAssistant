@@ -78,14 +78,14 @@ RGBW PartPixelAssistant::get(uint16_t n) {
     #ifdef USE_LOGGER
     ASSERT_ERR(n < count(), "n<count()");
     #endif
-    return _strip->get(_first + _backwards ? -n - 1 : n);
+    return _strip->get(_first + (_backwards ? -n - 1 : n));
 }
 
 void PartPixelAssistant::set(RGBW color, uint16_t n) {
     #ifdef USE_LOGGER
     ASSERT_WARN(n < count(), "n<count()", return );
     #endif
-    return _strip->set(color, _first + _backwards ? -n - 1 : n);
+    return _strip->set(color, _first + (_backwards ? -n - 1 : n));
 }
 
 // -------------------------------------------------------------------------------- MultiPixelAssistant
